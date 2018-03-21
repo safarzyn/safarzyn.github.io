@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video source</title>
+</head>
+<body>
+
+	<h1>Video source</h1>
+	
+	<input type="text" id="vsrc" placeholder="Put an address here">
+	<input type="button" id="btn" value="Show source">
+	<div id="output"></div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  
+<script>
+
+	$('#btn').on('click', callOtherDomain);
+	
+	function showSource() {
+		const url = $('#vsrc')[0].value;
+		$('#output').load(url, () => alert("Load was performed."));
+	}
+	
+	
+	var invocation = new XMLHttpRequest();
+	var url = 'https://sedziapilkarski.pl/2018/03/20/klip-hiszpania-real-madryt-girona-spalony/';
+   
+  function handler(data) {
+  	console.log(data);
+  } 
+  
+	function callOtherDomain() {
+		if(invocation) {    
+		  invocation.open('GET', url, true);
+		  invocation.onreadystatechange = handler;
+		  invocation.send(); 
+		}
+	}
+</script>
+</body>
+</html>
